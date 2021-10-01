@@ -63,33 +63,52 @@ function onClickHistoryButtons() {
 }
 
 function getWeather(cityName) {
-    let myUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=f91eaf46e0bf96dd19136475c9928ef1";
-    
+    // let myUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=f91eaf46e0bf96dd19136475c9928ef1";
+    let myUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=f91eaf46e0bf96dd19136475c9928ef1";
+    // let myUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=${data.city.coord.lat}&lon=${data.city.coord.lon}&appid=${=f91eaf46e0bf96dd19136475c9928ef1"}&units=metric}
 
     $.ajax({
         type:"GET",
         url:myUrl,
     }).then(response=>{
 
-
+        console.log(response)
         
+        let date = new Date();
+        
+       
 
 // need to se see why times are all the same
-        let date = response.list[0].dt_txt
+        // let date = response.list[0].dt_txt
  
-        console.log(date)
+        console.log(response)
 
-        let icon = response.list[0].weather[0].icon
+        let cityname = response.name;
+        let icon = response.weather[0].icon
         let iconUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
+        let temp = response.main.temp;
+        
+        let humidity = response.main.humidity;
+        let wind = response.wind.speed;
+        let uv = response.main.temp;
+        
+
         let mycard = 
         $(
             `<div class="card">
         <div class="card-body">
-        <h5 class="card-title red">${date}</h5>
+        <h3 class="card-title red">${cityname}</h3>
+        <div><h2>${date}</h2></div>
         <div><img src="${iconUrl}" alt="weather icon"></div>
-        `
+        <div><h1>${temp} °C</h1></div>     
+        <div><h1>${humidity} %</h1></div>
+        <div><h1>${wind} km/h</h1></div>
+        <div><h1>${uv}</h1></div>`
+    
+
         )
         $("#mycard").append(mycard)
+        // to make for 5 day forecast
         // $(
         // `<div class="card">
         // <div class="card-body">
@@ -117,24 +136,3 @@ function getWeather(cityName) {
   </figure>
 </li> */}
 
-var currentClass;
-function uvIndexLevel(uvi) {
-  if (currentClass) uviVal.classList.remove(currentClass);
-
-  if (uvi <= 2) {
-    uviVal.classList.add("bg-green-300");
-    currentClass = "bg-green-300";
-  } else if (uvi <= 5) {
-    uviVal.classList.add("bg-yellow-300");
-    currentClass = "bg-yellow-300";
-  } else if (uvi <= 7) {
-    uviVal.classList.add("bg-yellow-600");
-    currentClass = "bg-yellow-600";
-  } else if (uvi <= 10) {
-    uviVal.classList.add("bg-red-500");
-    currentClass = "bg-red-500";
-  } else {
-    uviVal.classList.add("bg-red-700");
-    currentClass = "bg-red-700";
-  }
-}
