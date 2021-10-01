@@ -1,59 +1,8 @@
-// this is from nicks tutorial example-------
-// var locationEl = document.querySelector("#location");
-// var tempVal = document.querySelector("#temp");
-// var humidVal = document.querySelector("#humid");
-// var windspVal = document.querySelector("#windsp");
-// var uviVal = document.querySelector("#uvi");
-// async function getWeatherData() {
-//     var fivedayforecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${locationEl.value}&appid=${APIkey}&units=metric`)
-//     .then(response => response.json())
-//     console.log(fivedayforecast)
-//     var oneCall = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fivedayforecast.city.coord.lat}&lon=${fivedayforecast.city.coord.lon}&appid=${APIkey}&units=metric`)
-//     .then(response => response.json())
-//     console.log(oneCall)
-//     // var uvIndex = 
-//     tempVal.textContent= oneCall.current.temp + " *Cel"
-//     // tempVal.textContent= oneCall.current.temp 
-//     // tempVal.textContent= oneCall.current.temp
-//     // tempVal.textContent= oneCall.current.temp
-// }
-// locationEl.addEventListener("keydown", function(event){
-//     if (event.keyCode === 13){
-//         getWeatherData();
-//     }
-// })
-
-// const form = document.querySelector(".top-banner form");
-
-// form.addEventListener("submit", e => {
-//   e.preventDefault();
-
-//     alert()
-
-//   const inputVal = input.value;
-// });
-
-// this is from zachs save to local storge-------
-// var searchHistory = JSON.parse(storedSearches);
-//     for (let i = 0; i < searchHistory.length; i++) {
-//         var search = document.createElement('button'); //create button of search value
-//         search.classList.add("w-100");
-//         search.textContent = searchHistory[i];
-//         history.appendChild(search);
-// searches.push(city);  localStorage.setItem("searchHistory", JSON.stringify(searches));
-
-
-// this is the code to run-------
-
 $(document).ready(onReady)
-
 function onReady() {
    $('#submitButton').on('click',onClickSubmitButton)
    renderCityButtons()
 }
-
-    $("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
-    // createTimeRows()
 
 var storedSearches = JSON.parse(localStorage.getItem("storageArray"));
 let mySearchedList = storedSearches || []
@@ -65,12 +14,6 @@ function onClickSubmitButton() {
     renderCityButtons()
     getWeather(myText)
 }
-
-
-// this will search through the array to locate the student.
-$('#submitButton').on('click', function(){
-    //stores users search into a variable
-    myText = $('#inputEl').val();
 
     mySearchedList = []; // <<<<<<<<<<<<<<< HERE
 
@@ -87,33 +30,21 @@ function onClickSubmitButton2(val) {
     getWeather(value)
 }
 
-
-// function renderCityButtons() {
-//     let myHistory = $("#searchHistory")
-//     myHistory.empty()
-//     mySearchedList.forEach(element => {
-//         let buttonEL = $("<button/>").appendTo(myHistory)
-//         $(buttonEL).on('click',onClickHistoryButtons)
-//         $(buttonEL).addClass("btn btn-outline-primary col-12")
-//         $(buttonEL).text(element)
-//     });
-// }
-
 function renderCityButtons() {
     let myHistory = $("#searchHistory")
     myHistory.empty()
     var button = "";
     mySearchedList.forEach(element => {
-       //  let buttonEL = $("<button>").appendTo(myHistory)
-       // // $(buttonEL).on('click',onClickHistoryButtons)
+        let buttonEL = $("<button>").appendTo(myHistory)
+       $(buttonEL).on('click',onClickHistoryButtons)
 
-       // console.log(buttonEL);
+       console.log(buttonEL);
 
-       //  $(buttonEL).addClass("btn btn-outline-primary col-12 historybtn")
-       //  $(buttonEL).text(element)
+        $(buttonEL).addClass("btn btn-outline-primary col-12 historybtn")
+        $(buttonEL).text(element)
     button +='<button class="btn btn-outline-primary col-12 historybtn" onclick="onClickSubmitButton2('+"'"+element+"'"+')">'+element+'</button>'
 
-      // console.log(element)
+      console.log(element)
 
     });
 
@@ -143,18 +74,67 @@ function getWeather(cityName) {
 
         
 
-
+// need to se see why times are all the same
         let date = response.list[0].dt_txt
-
+ 
         console.log(date)
 
         let icon = response.list[0].weather[0].icon
         let iconUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
         let mycard = 
-        $(`<div class="card"><div class="card-body">
-        <h5 class="card-title">${date}</h5>
+        $(
+            `<div class="card">
+        <div class="card-body">
+        <h5 class="card-title red">${date}</h5>
         <div><img src="${iconUrl}" alt="weather icon"></div>
-        </div></div>`)
+        `
+        )
         $("#mycard").append(mycard)
-    })}})
+        // $(
+        // `<div class="card">
+        // <div class="card-body">
+        // <h5 class="card-title red">${date}</h5>
+        // <div><img src="${iconUrl}" alt="weather icon"></div>`
+        // )
+        // $("#mycard").append(my5card)
+    })}
+   
 
+    // tempVal.textContent= cityData.current.temp + " °C"
+    // windVal.textContent= cityData.current.wind_speed + " KM/H" 
+    // humidVal.textContent= cityData.current.humidity + " %"
+    // uviVal.textContent= cityData.current.uvi
+    
+{/* <li class="city">
+  <h2 class="city-name" data-name="...">
+    <span>...</span>
+    <sup>...</sup>
+  </h2>
+  <span class="city-temp">...<sup>°C</sup></span>
+  <figure>
+    <img class="city-icon" src="..." alt="...">
+    <figcaption>...</figcaption>
+  </figure>
+</li> */}
+
+var currentClass;
+function uvIndexLevel(uvi) {
+  if (currentClass) uviVal.classList.remove(currentClass);
+
+  if (uvi <= 2) {
+    uviVal.classList.add("bg-green-300");
+    currentClass = "bg-green-300";
+  } else if (uvi <= 5) {
+    uviVal.classList.add("bg-yellow-300");
+    currentClass = "bg-yellow-300";
+  } else if (uvi <= 7) {
+    uviVal.classList.add("bg-yellow-600");
+    currentClass = "bg-yellow-600";
+  } else if (uvi <= 10) {
+    uviVal.classList.add("bg-red-500");
+    currentClass = "bg-red-500";
+  } else {
+    uviVal.classList.add("bg-red-700");
+    currentClass = "bg-red-700";
+  }
+}

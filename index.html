@@ -13,14 +13,13 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Weatherman</title>
+    <title>Rain Hail or Shine</title>
   </head>
  
   <body>
     <header class="jumbotron">
-      <h1 class="display-3">Rain Hail or Shine</h1>
+      <h1 class="display-2">Rain Hail or Shine</h1>
       <p class="lead">Whether the weather can be weathered</p>
-      <img class="float-right" alt="Weather display images" src="Anonymous_simple_weather_symbols_4.png"; width=210px height=204px;>           
     </header>
 
     <div class="container">
@@ -28,40 +27,44 @@
             <div class="row">
               <input type="text" id="inputEl" class="form-control"  placeholder="Get your weather check - Enter a city">
               <button type="button" class="btn btn-danger col-12" id="submitButton">Search</button>
-              <div class = "col-4" id="searchHistory">this will hold searched buttons</div>
-              <div class="col-6" id="mycard"></div>
-            <div class="row">
-              <div class="column">
-                <div class="card">..</div>
-              </div>
-              <div class="column">
-                <div class="card">..</div>
-              </div>
-              <div class="column">
-                <div class="card">..</div>
-              </div>
-              <div class="column">
-                <div class="card">..</div>
-              </div>
-              <div class="column">
-                <div class="card">..</div>
-              </div>
-            </div>
       </section>
 
-      <section>
-      
-      </section>
-    
-      <footer>
-        Konnen hannaford Web design
-      </footer>
-      
+      <section class="weather-results">
+            <div class = "col-2" id="searchHistory"></div>
+            <div class="col-10" id="mycard">
+              <div class="container location">
+                  <div class="city">Sydney</div>
+                  <div class="date">October 1</div>
+              </div>
+              <div class="container current">
+                  <div class="temp">20<span>°c</span></div>
+                  <div class="weather">Sunny</div>
+              </div>
+            </section>
+            <!-- <div class="col-10" id="my5card"> -->
+              <!-- <div class="row">
+                <div class="col-sm-2" >Next Day</div>
+                <div class="col-sm-2" >2 Days Away</div>
+                <div class="col-sm-2" >3 Days Away</div>
+                <div class="col-sm-2" >4 Days Away</div>
+                <div class="col-sm-2" >5 Days Away</div> -->
+              <!-- </div> -->
+              <!-- <div class="row">
+                <div class="col-sm-2" >Next Day</div>
+                <div class="col-sm-2" >2 Days Away</div>
+                <div class="col-sm-2" >3 Days Away</div>
+                <div class="col-sm-2" >4 Days Away</div>
+                <div class="col-sm-2" >5 Days Away</div>
+              </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+      <!-- </section> -->
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
       <script src="script.js"></script>
     </body>
 
+  
 
 </html>
 

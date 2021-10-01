@@ -1,43 +1,30 @@
-:root {
-    --bg_main: #0a1f44;
-    --text_light: #fff;
-    --text_med: #53627c;
-    --text_dark: #1e2432;
-    --red: #ff1e42;
-    --darkred: #c3112d;
-    --orange: #ff8c00;
-  }
-  
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-weight: normal;
   }
-  
-/* Float four columns side by side */
-.column {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
+
+  button {
+    cursor: pointer;
+  }
+
+.jumbotron {
+  border: none;
+  border-radius: 25px 0px 25px 0px;
 }
 
-/* Remove extra left and right margins, due to padding in columns */
-.row {margin: 0 -5px;}
+   
+  body {
+    background: #ff8c00;
+    padding: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
-/* Style the counter cards */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
+.col-sm-2 {
+  background-color: #c3112d;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
@@ -48,169 +35,3 @@
     margin-bottom: 20px;
   }
 }
-  
-  button {
-    cursor: pointer;
-  }
-   
-  input {
-    -webkit-appearance: none;
-  }
-   
-  button,
-  input {
-    border: none;
-    background: none;
-    outline: none;
-    color: inherit;
-  }
-  
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-  
-  ul {
-    list-style: none;
-  }
-  
-  body {
-    background: var(--bg_main);
-    color: var(--text_dark);
-    padding: 50px;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Rajdhani', sans-serif;
-    }
-
-
-  
-
-.profile-pic {
-    border-radius: 90px;
-}
-
-.top-banner {
-    color: var(--text_light);
-  }
-  
-  .heading {
-    font-weight: bold;
-    font-size: 4rem;
-    letter-spacing: 0.02em;
-    padding: 0 0 30px 0;
-  }
-  
-  .top-banner form {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .top-banner form input {
-    font-size: 2rem;
-    height: 40px;
-    padding: 5px 5px 10px;
-    border-bottom: 1px solid;
-  }
-  
-  .top-banner form input::placeholder {
-    color: currentColor; 
-  }
-  
-  .top-banner form button {
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    padding: 15px 20px;
-    margin-left: 15px;
-    border-radius: 5px;
-    background: var(--red);
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .top-banner form button:hover {
-    background: var(--darkred);
-  }
-  
-  .top-banner form .msg {
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    max-width: 450px;
-    min-height: 40px;
-  }
-  
-
-    .top-banner form input,
-    .top-banner form button {
-      width: 100%;
-    }
-  
-    .top-banner form button {
-      margin: 20px 0 0 0;
-    }
-    
-    .top-banner form .msg {
-      position: static;
-      max-width: none;
-      min-height: 0;
-      margin-top: 10px;
-    }
-  
-      @media screen and (max-width: 700px) {
-    .top-banner form {
-      flex-direction: column;
-    }
-}
-
-.ajax-section .city {
-    position: relative;
-    padding: 40px 10%;
-    border-radius: 20px;
-    background: var(--text_light);
-    color: var(--text_med);
-  }
-  
-  .ajax-section .city::after {
-    content: ’’;
-    width: 90%;
-    height: 50px;
-    position: absolute;
-    bottom: -12px;
-    left: 5%;
-    z-index: -1;
-    opacity: 0.3;
-    border-radius: 20px;
-    background: var(--text_light);
-  }
-  
-  .ajax-section figcaption {
-    margin-top: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  .ajax-section .city-temp {
-    font-size: 5rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: var(--text_dark);
-  }
-  
-  .ajax-section .city sup {
-    font-size: 0.5em;
-  }
-  
-  .ajax-section .city-name sup {
-    padding: 0.2em 0.6em;
-    border-radius: 30px;
-    color: var(--text_light);
-    background: var(--orange);
-  }
-  
-  .ajax-section .city-icon {
-    margin-top: 10px;
-    width: 100px;
-    height: 100px;
-  }
