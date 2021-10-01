@@ -89,7 +89,7 @@ function getWeather(cityName) {
         let tempForecast = response2.daily.temp;     
         let humidityForecast = response2.daily.humidity;
         let windForecast = response2.daily.wind_speed;
-
+        
         let mycard = 
         $(
             `<div class="card">
@@ -104,10 +104,13 @@ function getWeather(cityName) {
         $("#mycard").append(mycard)
 
         // 5 day forecast
-
+        for (let i=1; i<6; i++){
+        const day = response2.daily[i]
+        console.log(day)
+        } 
         let mycard2 = 
         $(
-            `<div class="card">
+        `<div class="card">
         <div class="card-body">
         <h1 class="card-title red">${cityname}-</h3>
         <div><img src="${iconUrlForecast}" alt="weather icon"></div>
@@ -121,7 +124,7 @@ function getWeather(cityName) {
 }        
 
 // to make uv index
-<div>
+{/* <div>
     <span id="uvi" class="uv-index py-1 px-2 rounded-md"></span>
 </div> 
 var currentClass;
@@ -143,4 +146,4 @@ function uvcolours (uvi) {
   } else {
     uviVal.classList.add("bg-red-700");
     currentClass = "bg-red-700";
-  }}
+  }} */}
