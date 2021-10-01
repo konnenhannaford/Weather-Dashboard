@@ -144,38 +144,3 @@ function getWeather(cityName) {
 
         })})}
 
-// . then(response=>{
- 
-    
-    // 5 day forecast
-    
-    
-//   })
-//   })
-//   }        
-          
-          // to make uv index
-{/* <div>
-<span id="uvi" class="uv-index py-1 px-2 rounded-md"></span>
-</div> 
-var currentClass;
-
-function uvcolours () {
-if (currentClass) uviVal.classList.remove(currentClass);
-
-if (uvi <= 2) {
-uviVal.classList.add("bg-green-300");
-currentClass = "bg-green-300";
-} else if (uvi <= 5) {
-uviVal.classList.add("bg-yellow-300");
-currentClass = "bg-yellow-300";
-} else if (uvi <= 7) {
-uviVal.classList.add("bg-yellow-600");
-currentClass = "bg-yellow-600";
-} else if (uvi <= 10) {
-uviVal.classList.add("bg-red-500");
-currentClass = "bg-red-500";
-} else {
-uviVal.classList.add("bg-red-700");
-currentClass = "bg-red-700";
-}} */}
