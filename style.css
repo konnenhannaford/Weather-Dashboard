@@ -23,8 +23,9 @@
     }
 
 
-.col-sm-2 {
-  background-color: #c3112d;
+#mycard2 {
+  background-color: #c3112c8a;
+  font-size: 10px;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
