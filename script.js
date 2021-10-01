@@ -99,7 +99,7 @@ function getWeather(cityName) {
         <div><p>Temp: ${temp} °C</p></div>     
         <div><p>Humidity: ${humidity} %</p></div>
         <div><p>Wind Speed: ${wind} km/h</p></div>
-        <div><p>UVI Index: ${uvi}</p></div>`
+        <div><p id="uviIndex">UVI Index: ${uvi} INDEX</p></div>`
         )
         $("#mycard").append(mycard)
 
@@ -109,7 +109,7 @@ function getWeather(cityName) {
         $(
             `<div class="card">
         <div class="card-body">
-        <h1 class="card-title red">${cityname}-${date}</h3>
+        <h1 class="card-title red">${cityname}-</h3>
         <div><img src="${iconUrlForecast}" alt="weather icon"></div>
         <div><p>Temp: ${tempForecast} °C</p></div>     
         <div><p>Humidity: ${humidityForecast} %</p></div>
@@ -118,41 +118,29 @@ function getWeather(cityName) {
         $("#mycard").append(mycard2)
     })
 })
-}      
-
-
-
-// to make for 5 day forecast
-        // $(
-        // `<div class="card">
-        // <div class="card-body">
-        // <h5 class="card-title red">${date}</h5>
-        // <div><img src="${iconUrl}" alt="weather icon"></div>`
-        // )
-        // $("#mycard").append(my5card)
-    // })})}
-   
+}        
 
 // to make uv index
-{/* <div><span id="uvi" class="uv-index py-1 px-2 rounded-md"></span></div> */}
-// var currentClass;
-// function uvcolours (uvi) {
-//   if (currentClass) uviVal.classList.remove(currentClass);
+<div>
+    <span id="uvi" class="uv-index py-1 px-2 rounded-md"></span>
+</div> 
+var currentClass;
+function uvcolours (uvi) {
+  if (currentClass) uviVal.classList.remove(currentClass);
 
-//   if (uvi <= 2) {
-//     uviVal.classList.add("bg-green-300");
-//     currentClass = "bg-green-300";
-//   } else if (uvi <= 5) {
-//     uviVal.classList.add("bg-yellow-300");
-//     currentClass = "bg-yellow-300";
-//   } else if (uvi <= 7) {
-//     uviVal.classList.add("bg-yellow-600");
-//     currentClass = "bg-yellow-600";
-//   } else if (uvi <= 10) {
-//     uviVal.classList.add("bg-red-500");
-//     currentClass = "bg-red-500";
-//   } else {
-//     uviVal.classList.add("bg-red-700");
-//     currentClass = "bg-red-700";
-//   }
-// }
+  if (uvi <= 2) {
+    uviVal.classList.add("bg-green-300");
+    currentClass = "bg-green-300";
+  } else if (uvi <= 5) {
+    uviVal.classList.add("bg-yellow-300");
+    currentClass = "bg-yellow-300";
+  } else if (uvi <= 7) {
+    uviVal.classList.add("bg-yellow-600");
+    currentClass = "bg-yellow-600";
+  } else if (uvi <= 10) {
+    uviVal.classList.add("bg-red-500");
+    currentClass = "bg-red-500";
+  } else {
+    uviVal.classList.add("bg-red-700");
+    currentClass = "bg-red-700";
+  }}
