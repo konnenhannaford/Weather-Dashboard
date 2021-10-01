@@ -62,53 +62,67 @@ function onClickHistoryButtons() {
     console.log(this)
 }
 
+// current day forecast
 function getWeather(cityName) {
-    // let myUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=f91eaf46e0bf96dd19136475c9928ef1";
-    let myUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=f91eaf46e0bf96dd19136475c9928ef1";
-    // let myUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=${data.city.coord.lat}&lon=${data.city.coord.lon}&appid=${=f91eaf46e0bf96dd19136475c9928ef1"}&units=metric}
-
+    let firstCall = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=f91eaf46e0bf96dd19136475c9928ef1";
     $.ajax({
         type:"GET",
-        url:myUrl,
-    }).then(response=>{
+        url:firstCall,
+    }).then(response1=>{
+    let secondCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${response1.coord.lat}&lon=${response1.coord.lon}&appid=f91eaf46e0bf96dd19136475c9928ef1&units=metric`;
+    $.ajax({
+        type:"GET",
+        url:secondCall,
+    }).then(response2=>{
 
-        console.log(response)
-        
         let date = new Date();
-        
-       
-
-// need to se see why times are all the same
-        // let date = response.list[0].dt_txt
- 
-        console.log(response)
-
-        let cityname = response.name;
-        let icon = response.weather[0].icon
+        let cityname = response1.name;
+        let icon = response1.weather[0].icon
         let iconUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
-        let temp = response.main.temp;
-        
-        let humidity = response.main.humidity;
-        let wind = response.wind.speed;
-        let uv = response.main.temp;
-        
+        let temp = response2.current.temp;     
+        let humidity = response2.current.humidity;
+        let wind = response2.current.wind_speed;
+        let uvi = response2.current.uvi;
+        // let dateForecast = new Date();
+        let iconForecast = response1.weather[0].icon
+        let iconUrlForecast = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
+        let tempForecast = response2.daily.temp;     
+        let humidityForecast = response2.daily.humidity;
+        let windForecast = response2.daily.wind_speed;
 
         let mycard = 
         $(
             `<div class="card">
         <div class="card-body">
-        <h3 class="card-title red">${cityname}</h3>
-        <div><h2>${date}</h2></div>
+        <h3 class="card-title red">${cityname}-${date}</h3>
         <div><img src="${iconUrl}" alt="weather icon"></div>
-        <div><h1>${temp} °C</h1></div>     
-        <div><h1>${humidity} %</h1></div>
-        <div><h1>${wind} km/h</h1></div>
-        <div><h1>${uv}</h1></div>`
-    
-
+        <div><p>Temp: ${temp} °C</p></div>     
+        <div><p>Humidity: ${humidity} %</p></div>
+        <div><p>Wind Speed: ${wind} km/h</p></div>
+        <div><p>UVI Index: ${uvi}</p></div>`
         )
         $("#mycard").append(mycard)
-        // to make for 5 day forecast
+
+        // 5 day forecast
+
+        let mycard2 = 
+        $(
+            `<div class="card">
+        <div class="card-body">
+        <h1 class="card-title red">${cityname}-${date}</h3>
+        <div><img src="${iconUrlForecast}" alt="weather icon"></div>
+        <div><p>Temp: ${tempForecast} °C</p></div>     
+        <div><p>Humidity: ${humidityForecast} %</p></div>
+        <div><p>Wind Speed: ${windForecast} km/h</p></div>`
+        )
+        $("#mycard").append(mycard2)
+    })
+})
+}      
+
+
+
+// to make for 5 day forecast
         // $(
         // `<div class="card">
         // <div class="card-body">
@@ -116,23 +130,29 @@ function getWeather(cityName) {
         // <div><img src="${iconUrl}" alt="weather icon"></div>`
         // )
         // $("#mycard").append(my5card)
-    })}
+    // })})}
    
 
-    // tempVal.textContent= cityData.current.temp + " °C"
-    // windVal.textContent= cityData.current.wind_speed + " KM/H" 
-    // humidVal.textContent= cityData.current.humidity + " %"
-    // uviVal.textContent= cityData.current.uvi
-    
-{/* <li class="city">
-  <h2 class="city-name" data-name="...">
-    <span>...</span>
-    <sup>...</sup>
-  </h2>
-  <span class="city-temp">...<sup>°C</sup></span>
-  <figure>
-    <img class="city-icon" src="..." alt="...">
-    <figcaption>...</figcaption>
-  </figure>
-</li> */}
+// to make uv index
+{/* <div><span id="uvi" class="uv-index py-1 px-2 rounded-md"></span></div> */}
+// var currentClass;
+// function uvcolours (uvi) {
+//   if (currentClass) uviVal.classList.remove(currentClass);
 
+//   if (uvi <= 2) {
+//     uviVal.classList.add("bg-green-300");
+//     currentClass = "bg-green-300";
+//   } else if (uvi <= 5) {
+//     uviVal.classList.add("bg-yellow-300");
+//     currentClass = "bg-yellow-300";
+//   } else if (uvi <= 7) {
+//     uviVal.classList.add("bg-yellow-600");
+//     currentClass = "bg-yellow-600";
+//   } else if (uvi <= 10) {
+//     uviVal.classList.add("bg-red-500");
+//     currentClass = "bg-red-500";
+//   } else {
+//     uviVal.classList.add("bg-red-700");
+//     currentClass = "bg-red-700";
+//   }
+// }
