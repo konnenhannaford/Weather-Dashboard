@@ -75,7 +75,7 @@ function getWeather(cityName) {
         url:secondCall,
     }).then(response2=>{
 
-        let date = new Date();
+        let date = new Date().toDateString()
         let cityname = response1.name;
         let icon = response1.weather[0].icon
         let iconUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
@@ -83,18 +83,13 @@ function getWeather(cityName) {
         let humidity = response2.current.humidity;
         let wind = response2.current.wind_speed;
         let uvi = response2.current.uvi;
-        // let dateForecast = new Date();
-        let iconForecast = response1.weather[0].icon
-        let iconUrlForecast = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
-        let tempForecast = response2.daily.temp;     
-        let humidityForecast = response2.daily.humidity;
-        let windForecast = response2.daily.wind_speed;
         
         let mycard = 
         $(
             `<div class="card">
         <div class="card-body">
-        <h3 class="card-title red">${cityname}-${date}</h3>
+        <h3 class="card-title red">${cityname}</h3>
+        <h5 class="card-title red">${date}</h5>
         <div><img src="${iconUrl}" alt="weather icon"></div>
         <div><p>Temp: ${temp} °C</p></div>     
         <div><p>Humidity: ${humidity} %</p></div>
@@ -102,48 +97,4 @@ function getWeather(cityName) {
         <div><p id="uviIndex">UVI Index: ${uvi} INDEX</p></div>`
         )
         $("#mycard").append(mycard)
-
-        // 5 day forecast
-        for (let i=1; i<6; i++){
-        const day = response2.daily[i]
-        console.log(day)
-        } 
-        let mycard2 = 
-        $(
-        `<div class="card">
-        <div class="card-body">
-        <h1 class="card-title red">${cityname}-</h3>
-        <div><img src="${iconUrlForecast}" alt="weather icon"></div>
-        <div><p>Temp: ${tempForecast} °C</p></div>     
-        <div><p>Humidity: ${humidityForecast} %</p></div>
-        <div><p>Wind Speed: ${windForecast} km/h</p></div>`
-        )
-        $("#mycard").append(mycard2)
-    })
-})
-}        
-
-// to make uv index
-{/* <div>
-    <span id="uvi" class="uv-index py-1 px-2 rounded-md"></span>
-</div> 
-var currentClass;
-function uvcolours (uvi) {
-  if (currentClass) uviVal.classList.remove(currentClass);
-
-  if (uvi <= 2) {
-    uviVal.classList.add("bg-green-300");
-    currentClass = "bg-green-300";
-  } else if (uvi <= 5) {
-    uviVal.classList.add("bg-yellow-300");
-    currentClass = "bg-yellow-300";
-  } else if (uvi <= 7) {
-    uviVal.classList.add("bg-yellow-600");
-    currentClass = "bg-yellow-600";
-  } else if (uvi <= 10) {
-    uviVal.classList.add("bg-red-500");
-    currentClass = "bg-red-500";
-  } else {
-    uviVal.classList.add("bg-red-700");
-    currentClass = "bg-red-700";
-  }} */}
+        })})}
